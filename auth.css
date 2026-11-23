@@ -1,0 +1,28 @@
+/* Halaman login & register (dibatasi ke body.auth-page supaya tidak mengganggu style.css) */
+body.auth-page {
+  margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+  font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif; color: #2f2b3a;
+  background:
+    radial-gradient(circle at 15% 20%, #f9dbe9 0, transparent 40%),
+    radial-gradient(circle at 85% 15%, #ddd6ff 0, transparent 40%),
+    radial-gradient(circle at 70% 90%, #d8f3e8 0, transparent 40%),
+    #faf8ff;
+}
+.auth-card { width: 100%; max-width: 380px; background: #fff; border-radius: 20px; padding: 32px 28px; box-shadow: 0 18px 40px #6f5fc81f; }
+.auth-logo { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #8171d8, #c58bd0); color: #fff; font-weight: 800; font-size: 20px; margin-bottom: 16px; }
+.auth-card h1 { margin: 0 0 6px; font-size: 22px; }
+.auth-sub { margin: 0 0 22px; color: #8a869a; font-size: 13px; }
+.auth-card label { display: block; font-size: 12px; font-weight: 700; margin: 14px 0 6px; }
+.auth-card input { width: 100%; box-sizing: border-box; border: 1px solid #e5e1f0; border-radius: 10px; padding: 11px 12px; font-size: 14px; outline: none; }
+.auth-card input:focus { border-color: #8171d8; box-shadow: 0 0 0 3px #8171d826; }
+.auth-error { min-height: 18px; margin: 12px 0 0; color: #d66c76; font-size: 12px; }
+.auth-btn { width: 100%; border: 0; border-radius: 10px; padding: 12px; margin-top: 6px; background: linear-gradient(135deg, #8171d8, #c58bd0); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; }
+.auth-btn:hover { filter: brightness(.95); }
+.auth-btn:disabled { opacity: .6; cursor: wait; }
+.auth-switch { text-align: center; margin: 18px 0 0; font-size: 13px; color: #8a869a; }
+.auth-switch a { color: #6f5fc8; font-weight: 700; text-decoration: none; }
+
+/* Nama pengguna + tombol logout di topbar index.html */
+.user-box { display: flex; align-items: center; gap: 10px; margin-left: 14px; font-size: 11px; font-weight: 600; color: #6f6a80; }
+.logout-btn { border: 0; background: #f0edff; color: #6f5fc8; border-radius: 8px; padding: 6px 10px; font-weight: 700; font-size: 11px; cursor: pointer; }
+.logout-btn:hover { background: #e6e1ff; }

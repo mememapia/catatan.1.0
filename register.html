@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar - Taskly</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="auth-logo">T</div>
+    <h1>Buat akun baru</h1>
+    <p class="auth-sub">Daftar supaya tugasmu tersimpan di akunmu sendiri.</p>
+
+    <form id="registerForm" novalidate>
+      <label for="name">Nama</label>
+      <input id="name" type="text" autocomplete="name" maxlength="60" required>
+
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" required>
+
+      <label for="password">Password (minimal 8 karakter)</label>
+      <input id="password" type="password" autocomplete="new-password" required>
+
+      <label for="password2">Ulangi password</label>
+      <input id="password2" type="password" autocomplete="new-password" required>
+
+      <p class="auth-error" id="authError" role="alert"></p>
+      <button class="auth-btn" id="submitBtn" type="submit">Daftar</button>
+    </form>
+
+    <p class="auth-switch">Sudah punya akun? <a href="login.html">Masuk</a></p>
+  </main>
+  <script src="auth.js"></script>
+</body>
+</html>

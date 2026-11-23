@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Taskly - aplikasi pengelola tugas harian sederhana.">
+  <title>Taskly | My Daily Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Taskly beranda">
+        <span class="brand-mark">✓</span>
+        <span>taskly<span class="brand-dot">.</span></span>
+      </a>
+
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Navigasi utama">
+        <a class="nav-link active" href="#tasks"><span class="nav-icon">▦</span> My Tasks</a>
+        <a class="nav-link" href="#overview"><span class="nav-icon">◷</span> Overview</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="mini-card">
+          <div class="mini-spark">✦</div>
+          <strong>Small steps,</strong>
+          <strong>big progress.</strong>
+          <p>Keep moving forward, one task at a time.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">E</div>
+          <div><strong>My Workspace</strong><small>Personal planner</small></div>
+          <span class="profile-menu">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="tasks">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> My Tasks</div>
+        <div class="topbar-right"><span class="today-dot"></span><span id="todayLabel">Today</span><span id="clockLabel" class="clock-label"></span><div class="user-box"><span id="userName"></span><button class="logout-btn" id="logoutBtn" type="button">Logout</button></div></div>
+      </header>
+
+      <section class="welcome" id="overview">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL PLANNER</p>
+          <h1>Make today<br><span>count.</span></h1>
+          <p class="welcome-copy">Plan your day, focus on what matters, and celebrate every little win.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-circle circle-one"></div>
+          <div class="art-circle circle-two"></div>
+          <div class="art-note"><span>✦</span><b>One thing<br>at a time.</b></div>
+          <div class="art-check">✓</div>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Ringkasan tugas">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total tasks</span><span class="stat-icon lavender">▤</span></div>
+          <strong id="totalCount">0</strong><small>All your tasks</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>In progress</span><span class="stat-icon peach">◷</span></div>
+          <strong id="activeCount">0</strong><small>Things to get done</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Completed</span><span class="stat-icon mint">✓</span></div>
+          <strong id="completedCount">0</strong><small>Great work!</small>
+        </article>
+      </section>
+
+      <section class="task-section">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAY ON TRACK</p><h2>Your tasks</h2></div>
+          <button class="primary-btn" id="openAddBtn" type="button"><span>＋</span> Add new task</button>
+        </div>
+
+        <div class="toolbar">
+          <div class="filter-tabs" role="group" aria-label="Filter status">
+            <button class="filter-btn selected" data-filter="all" type="button">All <span id="allTabCount">0</span></button>
+            <button class="filter-btn" data-filter="active" type="button">Active</button>
+            <button class="filter-btn" data-filter="completed" type="button">Completed</button>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search tasks..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+        </div>
+
+        <div class="list-header"><span>TASK NAME</span><span>DEADLINE</span><span>STATUS</span><span>ACTION</span></div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✦</div>
+          <h3>No tasks found</h3>
+          <p>Add a new task or change your search and filter.</p>
+          <button class="text-btn" id="emptyAddBtn" type="button">＋ Create your first task</button>
+        </div>
+        <p class="result-note" id="resultNote">Showing 0 tasks</p>
+      </section>
+
+      <footer class="footer">Made for a more mindful day <span>✦</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-heading">
+        <div><p class="eyebrow">TASK DETAILS</p><h2 id="modalTitle">Create a task</h2></div>
+        <button class="icon-btn" id="closeModalBtn" type="button" aria-label="Tutup">×</button>
+      </div>
+      <form id="taskForm" novalidate>
+        <label class="field-label" for="taskTitle">Task name <span>*</span></label>
+        <input class="field-input" id="taskTitle" name="taskTitle" type="text" maxlength="80" placeholder="e.g. Finish my project" required>
+        <small class="field-hint">Use a short, clear task name (maximum 80 characters).</small>
+        <p class="field-error" id="titleError"></p>
+
+        <label class="field-label" for="taskDescription">Description <small>(optional)</small></label>
+        <textarea class="field-input description-input" id="taskDescription" name="taskDescription" maxlength="240" placeholder="Add a few details..."></textarea>
+
+        <div class="form-row">
+          <div class="form-column">
+            <label class="field-label" for="taskDateTime">Deadline</label>
+            <input class="field-input" id="taskDateTime" name="taskDateTime" type="datetime-local">
+            <p class="field-error" id="dateError"></p>
+          </div>
+          <div class="form-column">
+            <label class="field-label" for="taskStatus">Status</label>
+            <select class="field-input" id="taskStatus" name="taskStatus">
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="secondary-btn" id="cancelBtn" type="button">Cancel</button>
+          <button class="primary-btn" id="saveTaskBtn" type="submit">Save task</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

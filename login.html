@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Taskly</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="auth-logo">T</div>
+    <h1>Selamat datang kembali</h1>
+    <p class="auth-sub">Masuk untuk melihat tugasmu.</p>
+
+    <form id="loginForm" novalidate>
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+
+      <p class="auth-error" id="authError" role="alert"></p>
+      <button class="auth-btn" id="submitBtn" type="submit">Masuk</button>
+    </form>
+
+    <p class="auth-switch">Belum punya akun? <a href="register.html">Daftar</a></p>
+  </main>
+  <script src="auth.js"></script>
+</body>
+</html>
